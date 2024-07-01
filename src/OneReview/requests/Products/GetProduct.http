@@ -1,0 +1,8 @@
+@host = http://localhost:5227
+@token = a
+@productId = f9d8867b-acff-423a-9d31-330227d7b4e7
+
+
+GET {{host}}/products/{{productId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json

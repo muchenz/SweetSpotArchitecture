@@ -1,0 +1,19 @@
+@host = http://localhost:5001
+#@host = http://localhost:5227
+@token = a
+
+
+# @name create
+
+POST {{host}}/products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+{
+  "Name":"MacBook Pro M3 Max",
+  "Category": "Electronics",
+  "SubCategory": "Laptops"
+}
+
+### get based on location header
+
+GET {{create.response.headers.Location}}
