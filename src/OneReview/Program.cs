@@ -3,13 +3,14 @@
 //docker compose down
 
 
+using OneReview.DependencyInjection;
 using OneReview.Persistence.Database;
 
 using OneReview.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddScoped<ProductService>();
+    builder.Services.AddServices();
 
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
@@ -31,7 +32,6 @@ var app = builder.Build();
 
     Console.WriteLine("________"+a);
 
-    DbInitializer.Initialize(app.Configuration["Database:ConnectionStrings:DefaultConnection"]!);
 }
 app.Run();
 
