@@ -1,3 +1,10 @@
+// docker compose up --build
+
+//docker compose down
+
+
+using OneReview.Persistence.Database;
+
 using OneReview.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +26,12 @@ var app = builder.Build();
 
     app.UseHttpsRedirection();
     app.MapControllers();
+
+    var a = app.Configuration["Database:ConnectionStrings:DefaultConnection"];
+
+    Console.WriteLine("________"+a);
+
+    DbInitializer.Initialize(app.Configuration["Database:ConnectionStrings:DefaultConnection"]!);
 }
 app.Run();
 
