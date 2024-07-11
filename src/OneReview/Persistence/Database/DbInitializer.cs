@@ -16,11 +16,14 @@ public static class DbInitializer
             .LogToConsole()
             .Build();
 
-        var result = upgrader.PerformUpgrade();
-
-        if (!result.Successful)
+        if (upgrader.IsUpgradeRequired()) // from Nick Chapsas 'The Easiest Way To Run Database Migrations'
         {
-            throw new InvalidOperationException("Failed set db");
+            var result = upgrader.PerformUpgrade();
+
+            if (!result.Successful)
+            {
+                throw new InvalidOperationException("Failed set db");
+            }
+        }
         }
     }
-}
