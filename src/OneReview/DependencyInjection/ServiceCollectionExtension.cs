@@ -1,4 +1,7 @@
-﻿using OneReview.Services;
+﻿using OneReview.Controllers;
+using OneReview.Persistence.Database;
+using OneReview.Persistence.Repositories;
+using OneReview.Services;
 using System;
 
 namespace OneReview.DependencyInjection;
@@ -16,5 +19,19 @@ public static class ServiceCollectionExtension
 
 
         return services; 
+    }
+
+    public static IServiceCollection AddPersistence(
+       this IServiceCollection services, ConfigurationManager configuration)
+    {
+
+        services.AddScoped<IDbConnectionFactory, PgSqlConnectionFactory>(_ => 
+        new PgSqlConnectionFactory(configuration[DbConstants.DefaultConnectionStringPath]!) );
+        
+        services.AddScoped<ProductsRepositoty>();
+
+
+
+        return services;
     }
 }

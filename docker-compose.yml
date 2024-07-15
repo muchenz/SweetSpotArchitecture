@@ -10,7 +10,7 @@ services:
     - "5001:5001"
     environment:
      - ASPNETCORE_ENVIRONMENT=Development
-     - Database__ConnectionStrings__DefaultConnection=Host=;Port=5432;Database=onereview;Username=postgres;Password=postgres;
+     - Database__ConnectionStrings__DefaultConnection=Host=onet-review-db;Port=5432;Database=onereview;Username=postgres;Password=postgres;
     depends_on:
         db:
          condition: service_healthy

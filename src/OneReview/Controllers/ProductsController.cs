@@ -11,7 +11,7 @@ public class ProductsController(ProductService productService) : ControllerBase
     private readonly ProductService _productService=productService;
 
     [HttpPost]
-    public IActionResult Create(CreateProductRequest request)
+    public async Task<IActionResult> Create(CreateProductRequest request)
     {
         var userId = Guid.Parse("649fa8cf-ece6-431f-beee-dd55802268ff");
 
@@ -19,7 +19,7 @@ public class ProductsController(ProductService productService) : ControllerBase
         var product = request.ToDomain();
 
         //invoking use case
-        _productService.Create(userId, product);
+        await _productService.CreateAsync(userId, product);
 
         // mapping to external represenstaion
         return CreatedAtAction(
@@ -30,10 +30,10 @@ public class ProductsController(ProductService productService) : ControllerBase
     }
 
     [HttpGet("{productId:guid}")]
-    public IActionResult Get(Guid productId)
+    public async Task<IActionResult> Get(Guid productId)
     {
 
-        var product = _productService.Get(productId);
+        var product = await _productService.GetAsync(productId);
 
 
 

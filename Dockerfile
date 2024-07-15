@@ -36,3 +36,7 @@ ENTRYPOINT ["dotnet", "OneReview.dll"]
 # docker image ls | Select-String one-review-youtube
 
 # docker run -p 5001:5001 --name one-review-youtube one-review-youtube 
+
+# docker image ls
+
+# docker compode up --build

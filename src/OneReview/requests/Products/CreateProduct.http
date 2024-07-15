@@ -17,3 +17,7 @@ Content-Type: application/json
 ### get based on location header
 
 GET {{create.response.headers.Location}}
+
+
+###
+GET http://localhost:5001/Products/d190d07f-9f13-459b-8a7d-7da7fd0d015c

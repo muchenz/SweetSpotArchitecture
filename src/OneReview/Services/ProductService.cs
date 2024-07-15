@@ -1,27 +1,24 @@
 ﻿using OneReview.Domain;
+using OneReview.Persistence.Repositories;
 
 namespace OneReview.Services;
 
-public class ProductService
+public class ProductService(ProductsRepositoty productsRepositoty)
 {
 
-    private static readonly List<Product> ProductRepository = [];
-    private static readonly List<User> UserRepository = [];
+    
+    private readonly ProductsRepositoty _productsRepositoty = productsRepositoty;
 
-    public void Create(Guid UserId, Product product)
+    public async Task  CreateAsync(Guid UserId, Product product)
     {
-       // User user = UserRepository.Find(a=>a.Id==UserId)?? throw new InvalidOperationException();
 
-
-        //user.AddProduct(product);
-        
-        ProductRepository.Add(product);
+       await  _productsRepositoty.CreateAsync(product);
 
 
     }
 
-    public Product?  Get(Guid productId)
+    public async Task<Product?>  GetAsync(Guid productId)
     {
-        return ProductRepository.Find(a=>a.Id == productId);
+        return await _productsRepositoty.GetByIdAsync(productId);
     }
 }

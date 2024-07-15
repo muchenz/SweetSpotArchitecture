@@ -10,7 +10,7 @@ using OneReview.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddServices();
+    builder.Services.AddServices().AddPersistence(builder.Configuration);
 
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
