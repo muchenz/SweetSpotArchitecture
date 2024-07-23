@@ -44,7 +44,8 @@ public static class ServiceCollectionExtension
         {
             optopns.CustomizeProblemDetails = context =>
             {
-                context.ProblemDetails.Extensions["asdf"] = "asdf";
+                context.ProblemDetails.Extensions["traceId"] = context.HttpContext.TraceIdentifier;
+                context.ProblemDetails.Extensions["serviceVersion"] = "eg. v1";
             };
         });
 
