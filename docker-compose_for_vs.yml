@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  onereview:
+    container_name: one-review-api_vs
+    # image: ${DOCKER_REGISTRY-}onereview
+    build:
+      context: .
+      # dockerfile: Dockerfile
+      dockerfile: src/OneReview/Dockerfile
+    ports:
+    - "5001:5001"
+    - "5003:5003"
+    environment:
+     - ASPNETCORE_ENVIRONMENT=Development
+     - ASPNETCORE_HTTP_PORTS=5001
+     - ASPNETCORE_HTTPS_PORTS=5003
+     - Database__ConnectionStrings__DefaultConnection=Host=onet-review-db_vs;Port=5432;Database=onereview;Username=postgres;Password=postgres;
+    depends_on:
+        db:
+         condition: service_healthy
+    
+  db:
+   container_name: onet-review-db_vs    
+   image: postgres:latest
+   environment:
+    - POSTGRES_DB=onereview
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+   ports:
+    - "5432:5432"
+   # volumes:
+   #  - postgres_data:/var/lib/postgresql/data # postgres storing ther data
+   volumes:
+    - ./.containers/database:/var/lib/postgresql/data
+   healthcheck:
+    test: ["CMD-SHELL", pg_isready -U postgres -d onereview]
+    interval: 5s
+    timeout: 5s
+    retries: 5
+
+# volumes:
+#     postgres_data:

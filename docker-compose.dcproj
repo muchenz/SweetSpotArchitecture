@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" Sdk="Microsoft.Docker.Sdk">
+  <PropertyGroup Label="Globals">
+    <ProjectVersion>2.1</ProjectVersion>
+    <DockerTargetOS>Linux</DockerTargetOS>
+    <DockerPublishLocally>False</DockerPublishLocally>
+    <ProjectGuid>9e4ac5af-be78-45ee-b9f3-08f02423cadc</ProjectGuid>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
+    <DockerServiceName>onereview_vs</DockerServiceName>
+	  
+    <DockerComposeProjectName>sweetspotarchitecture_for_vs</DockerComposeProjectName>
+    <DockerComposeBaseFilePath>docker-compose_for_vs</DockerComposeBaseFilePath>
+  </PropertyGroup>
+  <ItemGroup>
+    <!--<None Include="docker-compose_for_vs.override.yml">
+      <DependentUpon>docker-compose_for_vs.yml</DependentUpon>
+    </None>-->
+    <None Include="docker-compose_for_vs.yml" />
+    <None Include=".dockerignore" />
+  </ItemGroup>
+</Project>

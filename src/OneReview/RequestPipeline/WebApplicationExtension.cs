@@ -10,4 +10,12 @@ public static class WebApplicationExtension
 
         return app;
     }
+
+    public static WebApplication UseGlobalErrorHandling(this WebApplication app)
+    {
+        app.UseExceptionHandler();
+
+        return app;
+    }
+    
 }

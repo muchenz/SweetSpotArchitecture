@@ -14,7 +14,7 @@ public class ProductsController(ProductService productService) : ControllerBase
     public async Task<IActionResult> Create(CreateProductRequest request)
     {
         var userId = Guid.Parse("649fa8cf-ece6-431f-beee-dd55802268ff");
-
+        throw new ArgumentException("aaaaaaaaaaa");
         //mapping to internal represenstaion
         var product = request.ToDomain();
 
